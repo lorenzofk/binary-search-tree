@@ -8,7 +8,6 @@ describe('BinarySearchTreeTest Specs', () => {
     it('Should return a empty node in the first time', () => {
         let tree = new BinarySearchTree();
         assert.isNull(tree.root);
-        assert.isTrue(tree.isEmpty());
     });
 
     it('Should ensure that the node value is correct and its children are null', () => {
@@ -57,4 +56,26 @@ describe('BinarySearchTreeTest Specs', () => {
         assert.isNotNull(tree.root.right);
     });
 
+    it('Should return a null node when doesn\'t found a node by value', () => {
+        let tree = new BinarySearchTree();
+        let found = null;
+
+        tree.insert(null, 10);
+
+        found = tree.search(tree.root, 3);
+        
+        assert.isNull(found);
+        
+    });
+
+    it('Should return a node by value', () => {
+        let tree = new BinarySearchTree();
+
+        tree.insert(null, 3);
+
+        let found = tree.search(tree.root, 3);
+        
+        assert.isNotNull(found);
+        assert.equal(found.data, 3);
+    });
 });
