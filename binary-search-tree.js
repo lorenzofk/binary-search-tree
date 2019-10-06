@@ -27,7 +27,7 @@ class BinarySearchTree {
             if (node.left === null) {
                 node.left = new Node(value);
             } else {
-                this.insert(node.left, value);
+                return this.insert(node.left, value);
             }
 
         } else {
@@ -35,16 +35,11 @@ class BinarySearchTree {
             if (node.right === null) {
                 node.right = new Node(value);
             } else {
-                this.insert(node.right, value);
+                return this.insert(node.right, value);
             }
 
         }
 
-        return node;
-    }
-
-    isEmpty () {
-        return this._root === null;
     }
 
     preOrder (node) {
@@ -74,6 +69,20 @@ class BinarySearchTree {
             this.visitNode(node.data);
         }
 
+    }
+
+    search(node, value) {
+
+        if (node === null || node.data === value) {
+            return node;
+        }
+
+        if (node.data > value) {
+            return this.search(node.left, value);
+        } else {
+            return this.search(node.right, value);
+        }
+        
     }
 
     visitNode (value) {
