@@ -1,4 +1,4 @@
-import BinarySearchTree from "./binary-search-tree";
+import BinarySearchTree from "../src/classes/binary-search-tree";
 
 let tree = new BinarySearchTree();
      

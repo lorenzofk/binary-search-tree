@@ -1,5 +1,5 @@
-import Node from "../node";
-import BinarySearchTree from "../binary-search-tree";
+import Node from "../src/classes/node";
+import BinarySearchTree from "../src/classes/binary-search-tree";
 
 const assert = require('chai').assert;
 
