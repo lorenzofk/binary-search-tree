@@ -1,22 +1,12 @@
-import Node from "../src/classes/node";
 import BinarySearchTree from "../src/classes/binary-search-tree";
 
 const assert = require('chai').assert;
 
 describe('BinarySearchTreeTest Specs', () => {
-
+    
     it('Should return a empty node in the first time', () => {
         let tree = new BinarySearchTree();
         assert.isNull(tree.root);
-    });
-
-    it('Should ensure that the node value is correct and its children are null', () => {
-        let value = 1;
-        let node = new Node(value);
-        
-        assert.isNull(node.left);
-        assert.isNull(node.right);
-        assert.deepStrictEqual(node.data, value);
     });
 
     it('Should create and insert the new node in the tree\'s root', () => {
@@ -78,4 +68,17 @@ describe('BinarySearchTreeTest Specs', () => {
         assert.isNotNull(found);
         assert.equal(found.data, 3);
     });
+
+    it('Should remove a leaft node by value', () => {
+        let tree = new BinarySearchTree();
+
+        tree.insert(null, 10);
+        tree.insert(tree.root, 3);
+        tree.insert(tree.root, 12);
+
+        tree.remove(tree.root, 3);
+        assert.isNull(tree.root.left);
+        assert.isNotNull(tree.root.right);
+    });
+
 });
