@@ -2,15 +2,15 @@ import Node from "./node";
 
 class BinarySearchTree {
 
-    constructor() {
+    constructor () {
         this._root = null;
     }
 
-    get root() {
+    get root () {
         return this._root;
     }
 
-    set root(node) {
+    set root (node) {
         this._root = node;
     }
 
@@ -44,7 +44,7 @@ class BinarySearchTree {
 
     preOrder (node) {
 
-        if (node != null) {
+        if (node !== null) {
             this.visitNode(node.data);
             this.preOrder(node.left);
             this.preOrder(node.right);
@@ -53,7 +53,7 @@ class BinarySearchTree {
 
     inOrder (node) {
 
-        if (node != null) {
+        if (node !== null) {
             this.inOrder(node.left);
             this.visitNode(node.data);
             this.inOrder(node.right);
@@ -63,26 +63,46 @@ class BinarySearchTree {
 
     postOrder (node) {
 
-        if (node != null) {
+        if (node !== null) {
             this.postOrder(node.left);
             this.postOrder(node.right);
             this.visitNode(node.data);
         }
 
     }
+    
+    remove (current, value) {
 
-    search(node, value) {
+        if (current.data > value) {
+            current.left = this.remove(current.left, value);
+        } else if (current.data < value) {
+            current.right = this.remove(current.right, value);
+        } else {
+
+            if (current.left === null && current.right === null) {
+                return null;
+            } else if (current.left === null) {
+                return current.right;
+            } else if (current.right === null) {
+                return current.left;
+            } else {
+                console.log('At this point we need to find the minimum value and reorganize the tree.');
+            }
+
+        }
+        
+        return current;
+    }
+
+    search (node, value) {
 
         if (node === null || node.data === value) {
             return node;
         }
 
-        if (node.data > value) {
-            return this.search(node.left, value);
-        } else {
-            return this.search(node.right, value);
-        }
-        
+        return (node.data > value)  
+            ? this.search(node.left, value) 
+            : this.search(node.right, value);
     }
 
     visitNode (value) {
