@@ -74,14 +74,10 @@ class BinarySearchTree {
     remove (current, value) {
 
         if (current.data > value) {
-            console.log('Opening the left recursion stack: Current node is: ' + current.data);
             current.left = this.remove(current.left, value);
         } else if (current.data < value) {
-            console.log('Opening the right recursion stack: Current node is: ' + current.data);
             current.right = this.remove(current.right, value);
         } else {
-
-            console.log('Found the node to remove: ' + value);
 
             if (current.left === null && current.right === null) {
                 return null;
@@ -94,8 +90,6 @@ class BinarySearchTree {
             }
 
         }
-        
-        console.log('Coming back from recursion. Now the current node is: ' + current.data);
         
         return current;
     }

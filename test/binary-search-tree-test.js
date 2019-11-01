@@ -58,7 +58,7 @@ describe('BinarySearchTreeTest Specs', () => {
         
     });
 
-    it('Should return a node by value', () => {
+    it('Should find a node by value', () => {
         let tree = new BinarySearchTree();
 
         tree.insert(null, 3);
@@ -69,7 +69,7 @@ describe('BinarySearchTreeTest Specs', () => {
         assert.equal(found.data, 3);
     });
 
-    it('Should remove a leaft node by value', () => {
+    it('Should remove a leaf node', () => {
         let tree = new BinarySearchTree();
 
         tree.insert(null, 10);
@@ -77,8 +77,39 @@ describe('BinarySearchTreeTest Specs', () => {
         tree.insert(tree.root, 12);
 
         tree.remove(tree.root, 3);
+
         assert.isNull(tree.root.left);
         assert.isNotNull(tree.root.right);
+    });
+
+    it('Should remove a node with only a right child', () => {
+        let tree = new BinarySearchTree();
+
+        tree.insert(null, 10);
+        tree.insert(tree.root, 3);
+        tree.insert(tree.root, 4);
+        tree.insert(tree.root, 12);
+
+        tree.remove(tree.root, 3);
+
+        assert.isNotNull(tree.root.left);
+        assert.isNotNull(tree.root.right);
+        assert.equal(tree.root.left.data, 4);
+    });
+
+    it('Should remove a node with only a left child', () => {
+        let tree = new BinarySearchTree();
+
+        tree.insert(null, 10);
+        tree.insert(tree.root, 3);
+        tree.insert(tree.root, 1);
+        tree.insert(tree.root, 12);
+
+        tree.remove(tree.root, 3);
+
+        assert.isNotNull(tree.root.left);
+        assert.isNotNull(tree.root.right);
+        assert.equal(tree.root.left.data, 1);
     });
 
 });
